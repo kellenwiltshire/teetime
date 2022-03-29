@@ -1,32 +1,30 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<form onsubmit="addGolfer" class="flex">
+		<form class="flex">
 			<h3>Name</h3>
-			<input v-on="updateName" type="text" required />
+			<input type="text" name="name" v-model="updateName" required />
 			<h3>Tee Time Restriction?</h3>
-			<input />
+			<input type="checkbox" name="teeTime" />
 			<h3>Carpool</h3>
-			<input />
-			<button type="submit">Add</button>
+			<input type="text" name="carpool" />
+			<button>Add</button>
 		</form>
 	</div>
 </template>
 
 <script lang="ts">
-export default {
-	props: [
-		'addGolfer',
-		'updateGolferName',
-		'golferCarpool',
-		'golferRestriction',
-	],
-	methods: {
-		updateName() {
-			this.$emit('updateGolferName', golferName);
-		},
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+	name: 'GolferForm',
+	props: ['addGolfer', 'golferName', 'golferCarpool', 'golferRestriction'],
+	data() {
+		return {
+			name: this.golferName,
+		};
 	},
-};
+});
 </script>
 
 <style scoped>
@@ -50,22 +48,5 @@ input {
 	font-size: 16px;
 	height: 100%;
 	display: block;
-}
-
-button {
-	background: #4fc08d;
-	padding: 10px 22px;
-	border: none;
-	color: white;
-	border-radius: 4px;
-	margin: 8px;
-	font-size: 16px;
-	cursor: pointer;
-	box-shadow: 1px 1px 15px -2px #212c4430;
-	transition: 0.15s;
-}
-
-button:hover {
-	background: #42aa7b;
 }
 </style>

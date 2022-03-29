@@ -3,9 +3,9 @@
 		<CourseInformation />
 		<GolferForm
 			:addGolfer="addGolfer"
-			@updateGolferName="updateGolferName"
-			:golferRestriction="golferRestriction"
-			:golferCarpool="golferCarpool"
+			:golferName="golfer.name"
+			:golferRestriction="golfer.restriction"
+			:golferCarpool="golfer.carpool"
 		/>
 		<GolferList />
 	</div>
@@ -33,9 +33,11 @@ export default defineComponent({
 	data() {
 		return {
 			listOfGolfers: [] as Golfer[],
-			golferName: '',
-			golferRestriction: false,
-			golferCarpool: '',
+			golfer: {
+				name: '',
+				restriction: false,
+				carpool: '',
+			},
 			courseInformation: {
 				name: '',
 				date: '',
@@ -46,18 +48,15 @@ export default defineComponent({
 		};
 	},
 	methods: {
-		addGolfer: function () {
-			const golfer = {
-				name: this.golferName,
-				restriction: this.golferRestriction,
-				carpool: this.golferCarpool,
+		addGolfer() {
+			console.log('here');
+
+			this.listOfGolfers.push(this.golfer);
+			this.golfer = {
+				name: '',
+				restriction: false,
+				carpool: '',
 			};
-			this.listOfGolfers.push(golfer);
-			this.golferName = '';
-			(this.golferRestriction = false), (this.golferCarpool = '');
-		},
-		updateGolferName: function (name: string) {
-			this.golferName = name;
 		},
 	},
 });
