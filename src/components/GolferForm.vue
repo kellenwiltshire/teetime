@@ -1,20 +1,25 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<div class="flex">
+		<form onsubmit="addGolfer" class="flex">
 			<h3>Name</h3>
-			<input />
+			<input v-model="golferName" />
 			<h3>Tee Time Restriction?</h3>
 			<input />
 			<h3>Carpool</h3>
 			<input />
-			<button>Add</button>
-		</div>
+			<button type="submit">Add</button>
+		</form>
 	</div>
 </template>
 
 <script lang="ts">
-export default {};
+export default {
+	props: ['addGolfer', 'golferName'],
+	data() {
+		golferName: '';
+	},
+};
 </script>
 
 <style scoped>

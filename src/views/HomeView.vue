@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<CourseInformation />
-		<GolferForm />
+		<GolferForm :addGolfer="addGolfer" :golferName="golfer.name" />
 		<GolferList />
 	</div>
 </template>
@@ -41,6 +41,12 @@ export default defineComponent({
 				restrictionTime: '',
 			},
 		};
+	},
+	methods: {
+		addGolfer: function () {
+			this.listOfGolfers.push(this.golfer);
+			this.golfer = { name: '', restriction: false, carpool: '' };
+		},
 	},
 });
 </script>
