@@ -3,7 +3,7 @@
 	<div class="card">
 		<form onsubmit="addGolfer" class="flex">
 			<h3>Name</h3>
-			<input v-model="golferName" />
+			<input v-on="updateName" type="text" required />
 			<h3>Tee Time Restriction?</h3>
 			<input />
 			<h3>Carpool</h3>
@@ -15,9 +15,16 @@
 
 <script lang="ts">
 export default {
-	props: ['addGolfer', 'golferName'],
-	data() {
-		golferName: '';
+	props: [
+		'addGolfer',
+		'updateGolferName',
+		'golferCarpool',
+		'golferRestriction',
+	],
+	methods: {
+		updateName() {
+			this.$emit('updateGolferName', golferName);
+		},
 	},
 };
 </script>
