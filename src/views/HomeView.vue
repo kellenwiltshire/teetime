@@ -33,6 +33,13 @@ export default defineComponent({
 				restriction: false,
 				carpool: '',
 			},
+			courseInformation: {
+				name: '',
+				date: '',
+				game: '',
+				startTime: '',
+				restrictionTime: '',
+			},
 		};
 	},
 });
