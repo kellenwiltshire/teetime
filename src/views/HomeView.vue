@@ -12,12 +12,28 @@ import CourseInformation from '@/components/CourseInformation.vue';
 import GolferForm from '@/components/GolferForm.vue';
 import GolferList from '@/components/GolferList.vue';
 
+interface Golfer {
+	name: string;
+	restriction: boolean;
+	carpool: string;
+}
+
 export default defineComponent({
 	name: 'HomeView',
 	components: {
 		CourseInformation,
 		GolferForm,
 		GolferList,
+	},
+	data() {
+		return {
+			listOfGolfers: [] as Golfer[],
+			golfer: {
+				name: '',
+				restriction: false,
+				carpool: '',
+			},
+		};
 	},
 });
 </script>
