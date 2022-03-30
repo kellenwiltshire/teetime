@@ -6,7 +6,7 @@ interface Golfer {
 	carpool: string;
 }
 
-export const useStore = defineStore('golfers', {
+export const golferStore = defineStore('golfers', {
 	state: () => ({
 		listOfGolfers: [] as Golfer[],
 	}),

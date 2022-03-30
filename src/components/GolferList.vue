@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
+import { golferStore } from '@/stores/golferStore';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'GolferList',
 	setup() {
-		const store = useStore();
+		const store = golferStore();
 		return { store };
 	},
 });

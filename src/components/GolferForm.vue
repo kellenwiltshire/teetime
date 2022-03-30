@@ -14,13 +14,13 @@
 </template>
 
 <script lang="ts">
-import { useStore } from '@/store';
+import { golferStore } from '@/stores/golferStore';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'GolferForm',
 	setup() {
-		const store = useStore();
+		const store = golferStore();
 
 		return { store };
 	},
