@@ -226,10 +226,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 		}
 	});
 
-	const finalSchedule = {
-		teeTimeSchedule: finalTeeTimeArray,
-		waitingList: waitingList,
-	};
+	const finalSchedule = finalTeeTimeArray;
 
 	return finalSchedule;
 }
