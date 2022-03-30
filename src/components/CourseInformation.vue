@@ -8,6 +8,8 @@
 			<input />
 			<h3>Game</h3>
 			<input />
+			<h3>Interval</h3>
+			<input />
 			<h3>Start Time</h3>
 			<input />
 			<h3>Restriction Time</h3>
@@ -19,8 +21,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { courseStore } from '@/stores/courseStore';
 export default defineComponent({
 	name: 'CourseInformation',
+	steup() {
+		const store = courseStore();
+		return { store };
+	},
+	data() {
+		return {
+			courseName: '',
+			date: '',
+			game: '',
+			interval: 0,
+			startTime: '',
+			restrictionTime: '',
+		};
+	},
 });
 </script>
 
