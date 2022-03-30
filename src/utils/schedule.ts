@@ -208,6 +208,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 		}
 	});
 
+	//toRaw() also could work but in Vue - import {toRaw} from 'vue'. console.log(toRaw(store.data))
 	const finalSchedule = JSON.parse(JSON.stringify(finalTeeTimeArray));
 
 	return finalSchedule;
