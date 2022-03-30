@@ -11,7 +11,7 @@
 				<p>{{ golfer.name }}</p>
 			</div>
 		</div>
-		<button>Generate Tee Time Schedule</button>
+		<button @click="createSchedule">Generate Tee Time Schedule</button>
 	</div>
 </template>
 
