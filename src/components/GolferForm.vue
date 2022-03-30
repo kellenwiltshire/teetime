@@ -1,7 +1,7 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<form @submit="updateGolfers" class="flex">
+		<form @submit.prevent="(e) => updateGolfers" class="flex">
 			<h3>Name</h3>
 			<input type="text" name="name" v-model="golferName" required />
 			<h3>Tee Time Restriction?</h3>
