@@ -19,6 +19,7 @@
 import { courseStore } from '@/stores/courseStore';
 import { golferStore } from '@/stores/golferStore';
 import { defineComponent } from 'vue';
+import generateSchedule from '@/utils/schedule';
 
 export default defineComponent({
 	name: 'GolferList',
