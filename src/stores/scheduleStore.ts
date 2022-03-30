@@ -5,7 +5,7 @@ export const scheduleStore = defineStore('schedule', {
 		schedule: [],
 	}),
 	actions: {
-		updateSchedule(newSchedule) {
+		updateSchedule(newSchedule: []) {
 			this.schedule = newSchedule;
 		},
 	},
