@@ -95,32 +95,25 @@ const filterArray = (arr1, arr2) => {
 };
 
 interface Golfer {
-	first_name: string;
-	last_name: string;
-	teeTime: boolean;
+	name: string;
+	restriction: boolean;
 	carpool: string;
-}
-
-interface Schedule {
-	start_time: string;
 }
 
 interface Course {
 	timeslots: number;
 	interval: number;
+	startTime: string;
+	restrictionTime: string;
 }
 
-export default function generateSchedule(
-	golfers: Golfer[],
-	schedule: Schedule,
-	course: Course,
-) {
+export default function generateSchedule(golfers: Golfer[], course: Course) {
 	//Deterime Max Golfers
 	const maxGolfers = course.timeslots * 4 || 12 * 4;
 
 	//Create initial Variables
 	const initialGolfers: Golfer[] = golfers;
-	const initialStartTime = schedule.start_time;
+	const initialStartTime = course.startTime;
 	const interval = '00:' + ('0' + course.interval).slice(-2) + ':00';
 
 	//Create the Waiting List and Usuable Golfers Array
@@ -154,7 +147,7 @@ export default function generateSchedule(
 	let teeTimeRestrictions: Golfer[] = [];
 	let unrestrictedGolfers: Golfer[] = [];
 	usableGolfers.forEach((golfer: Golfer) => {
-		golfer.teeTime
+		golfer.restriction
 			? teeTimeRestrictions.push(golfer)
 			: unrestrictedGolfers.push(golfer);
 	});
@@ -187,7 +180,7 @@ export default function generateSchedule(
 
 	//Reset the variables
 	groupNum = 0;
-	currTime = schedule.start_time;
+	currTime = course.startTime;
 
 	//Before setting final tee times will need to iterate through array and look for car pooling people. Once one is found, will need to find the matching person and splice them out of their current position (unless within 1-12 golfers away from original person) and splice them back in at a random interval (1-12) from original golfer to make sure they are within 3 tee times of eachother
 
@@ -196,8 +189,7 @@ export default function generateSchedule(
 		if (newGolferArray[i].carpool) {
 			name = newGolferArray[i].carpool;
 			const golferIndex = newGolferArray.findIndex((obj) => {
-				const golferName = `${obj.first_name} ${obj.last_name}`;
-				if (golferName === name) {
+				if (obj.name === name) {
 					return true;
 				}
 
