@@ -18,6 +18,7 @@
 <script lang="ts">
 import { courseStore } from '@/stores/courseStore';
 import { golferStore } from '@/stores/golferStore';
+import { scheduleStore } from '@/stores/scheduleStore';
 import { defineComponent } from 'vue';
 import generateSchedule from '@/utils/schedule';
 
@@ -26,7 +27,8 @@ export default defineComponent({
 	setup() {
 		const golfers = golferStore();
 		const courseInfo = courseStore();
-		return { golfers, courseInfo };
+		const schedStore = scheduleStore();
+		return { golfers, courseInfo, schedStore };
 	},
 	methods: {
 		createSchedule() {
@@ -34,6 +36,7 @@ export default defineComponent({
 				this.golfers.listOfGolfers,
 				this.courseInfo.courseInfo,
 			);
+			this.schedStore.updateSchedule(schedule);
 		},
 	},
 });
