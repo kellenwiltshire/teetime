@@ -1,7 +1,7 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<form @submit.prevent="(e) => updateGolfers" class="flex">
+		<form @submit.prevent="updateGolfers" class="flex">
 			<h3>Name</h3>
 			<input type="text" name="name" v-model="golferName" required />
 			<h3>Tee Time Restriction?</h3>
@@ -40,6 +40,9 @@ export default defineComponent({
 				carpool: this.carpool,
 			};
 			this.store.addGolfer(golfer);
+			this.golferName = '';
+			this.carpool = '';
+			this.restriction = false;
 		},
 	},
 });
