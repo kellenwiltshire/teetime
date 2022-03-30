@@ -1,12 +1,7 @@
 <template>
 	<div class="container">
 		<CourseInformation />
-		<GolferForm
-			:addGolfer="addGolfer"
-			:golferName="golfer.name"
-			:golferRestriction="golfer.restriction"
-			:golferCarpool="golfer.carpool"
-		/>
+		<GolferForm />
 		<GolferList />
 	</div>
 </template>
@@ -17,47 +12,12 @@ import CourseInformation from '@/components/CourseInformation.vue';
 import GolferForm from '@/components/GolferForm.vue';
 import GolferList from '@/components/GolferList.vue';
 
-interface Golfer {
-	name: string;
-	restriction: boolean;
-	carpool: string;
-}
-
 export default defineComponent({
 	name: 'HomeView',
 	components: {
 		CourseInformation,
 		GolferForm,
 		GolferList,
-	},
-	data() {
-		return {
-			listOfGolfers: [] as Golfer[],
-			golfer: {
-				name: '',
-				restriction: false,
-				carpool: '',
-			},
-			courseInformation: {
-				name: '',
-				date: '',
-				game: '',
-				startTime: '',
-				restrictionTime: '',
-			},
-		};
-	},
-	methods: {
-		addGolfer() {
-			console.log('here');
-
-			this.listOfGolfers.push(this.golfer);
-			this.golfer = {
-				name: '',
-				restriction: false,
-				carpool: '',
-			};
-		},
 	},
 });
 </script>

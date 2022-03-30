@@ -1,28 +1,46 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<form class="flex">
+		<form @submit="updateGolfers" class="flex">
 			<h3>Name</h3>
-			<input type="text" name="name" v-model="updateName" required />
+			<input type="text" name="name" v-model="golferName" required />
 			<h3>Tee Time Restriction?</h3>
-			<input type="checkbox" name="teeTime" />
+			<input type="checkbox" name="teeTime" v-model="restriction" />
 			<h3>Carpool</h3>
-			<input type="text" name="carpool" />
-			<button>Add</button>
+			<input type="text" name="carpool" v-model="carpool" />
+			<button type="submit">Add</button>
 		</form>
 	</div>
 </template>
 
 <script lang="ts">
+import { useStore } from '@/store';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'GolferForm',
-	props: ['addGolfer', 'golferName', 'golferCarpool', 'golferRestriction'],
+	setup() {
+		const store = useStore();
+
+		return { store };
+	},
 	data() {
 		return {
-			name: this.golferName,
+			golferName: '',
+			carpool: '',
+			restriction: false,
 		};
+	},
+	methods: {
+		updateGolfers(e: HTMLFormElement) {
+			e.preventDefault();
+			const golfer = {
+				name: this.golferName,
+				restriction: this.restriction,
+				carpool: this.carpool,
+			};
+			this.store.addGolfer(golfer);
+		},
 	},
 });
 </script>

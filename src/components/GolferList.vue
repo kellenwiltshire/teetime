@@ -3,17 +3,12 @@
 	<div class="card">
 		<div class="flex">
 			<!-- This to be replaced with Component -->
-			<div class="card-inner">
-				<p>GOLFER NAME</p>
-			</div>
-			<div class="card-inner">
-				<p>GOLFER NAME</p>
-			</div>
-			<div class="card-inner">
-				<p>GOLFER NAME</p>
-			</div>
-			<div class="card-inner">
-				<p>GOLFER NAME</p>
+			<div
+				v-for="(golfer, i) in store.listOfGolfers"
+				:key="i"
+				class="card-inner"
+			>
+				<p>{{ golfer.name }}</p>
 			</div>
 		</div>
 		<button>Generate Tee Time Schedule</button>
@@ -21,7 +16,16 @@
 </template>
 
 <script lang="ts">
-export default {};
+import { useStore } from '@/store';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+	name: 'GolferList',
+	setup() {
+		const store = useStore();
+		return { store };
+	},
+});
 </script>
 
 <style scoped>
