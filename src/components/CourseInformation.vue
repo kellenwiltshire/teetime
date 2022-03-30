@@ -51,6 +51,7 @@ export default defineComponent({
 				startTime: this.startTime,
 				restrictionTime: this.restrictionTime,
 			};
+			console.log(courseInfo);
 			this.store.updateCourse(courseInfo);
 			this.check.setIsCourseInfo();
 			this.check.setIsGolferInfo();
