@@ -39,6 +39,7 @@ export default defineComponent({
 				restriction: this.restriction,
 				carpool: this.carpool,
 			};
+			console.log(golfer);
 			this.store.addGolfer(golfer);
 			this.golferName = '';
 			this.carpool = '';

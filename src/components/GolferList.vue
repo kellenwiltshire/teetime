@@ -3,11 +3,7 @@
 	<div class="card">
 		<div class="flex">
 			<!-- This to be replaced with Component -->
-			<div
-				v-for="(golfer, i) in golfers.listOfGolfers"
-				:key="i"
-				class="card-inner"
-			>
+			<div v-for="(golfer, i) in golfers.listOfGolfers" :key="i" class="card-inner">
 				<p>{{ golfer.name }}</p>
 			</div>
 		</div>
@@ -28,14 +24,13 @@ export default defineComponent({
 		const golfers = golferStore();
 		const courseInfo = courseStore();
 		const schedStore = scheduleStore();
+		console.log(golfers.listOfGolfers);
+
 		return { golfers, courseInfo, schedStore };
 	},
 	methods: {
 		createSchedule() {
-			const schedule = generateSchedule(
-				this.golfers.listOfGolfers,
-				this.courseInfo.courseInfo,
-			);
+			const schedule = generateSchedule(this.golfers.listOfGolfers, this.courseInfo.courseInfo);
 			this.schedStore.updateSchedule(schedule);
 		},
 	},

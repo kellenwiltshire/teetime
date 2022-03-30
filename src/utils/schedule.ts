@@ -208,7 +208,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 		}
 	});
 
-	const finalSchedule = finalTeeTimeArray;
+	const finalSchedule = JSON.parse(JSON.stringify(finalTeeTimeArray));
 
 	return finalSchedule;
 }
