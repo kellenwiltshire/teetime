@@ -1,8 +1,14 @@
 <template>
 	<div class="container">
-		<CourseInformation />
-		<GolferForm />
-		<GolferList />
+		<div v-if="!store.isCourseInfo">
+			<CourseInformation />
+		</div>
+		<div v-if="store.isGolferInfo">
+			<GolferForm />
+		</div>
+		<div v-if="store.isGolferInfo">
+			<GolferList />
+		</div>
 	</div>
 </template>
 
@@ -11,9 +17,15 @@ import { defineComponent } from 'vue';
 import CourseInformation from '@/components/CourseInformation.vue';
 import GolferForm from '@/components/GolferForm.vue';
 import GolferList from '@/components/GolferList.vue';
+import { checkStore } from '@/stores/checkStore';
 
 export default defineComponent({
 	name: 'HomeView',
+	setup() {
+		const store = checkStore();
+
+		return { store };
+	},
 	components: {
 		CourseInformation,
 		GolferForm,

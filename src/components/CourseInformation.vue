@@ -1,7 +1,7 @@
 <template>
 	<h1>Course Information</h1>
 	<div class="card">
-		<div class="flex">
+		<form @submit.prevent="updateCourseInfo" class="flex">
 			<h3>Course Name</h3>
 			<input />
 			<h3>Date</h3>
@@ -15,18 +15,20 @@
 			<h3>Restriction Time</h3>
 			<input />
 			<button>Next</button>
-		</div>
+		</form>
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { courseStore } from '@/stores/courseStore';
+import { checkStore } from '@/stores/checkStore';
 export default defineComponent({
 	name: 'CourseInformation',
-	steup() {
+	setup() {
 		const store = courseStore();
-		return { store };
+		const check = checkStore();
+		return { store, check };
 	},
 	data() {
 		return {
@@ -37,6 +39,22 @@ export default defineComponent({
 			startTime: '',
 			restrictionTime: '',
 		};
+	},
+	methods: {
+		updateCourseInfo(e: HTMLFormElement) {
+			e.preventDefault();
+			const courseInfo = {
+				name: this.courseName,
+				interval: this.interval,
+				date: this.date,
+				game: this.game,
+				startTime: this.startTime,
+				restrictionTime: this.restrictionTime,
+			};
+			this.store.updateCourse(courseInfo);
+			this.check.setIsCourseInfo();
+			this.check.setIsGolferInfo();
+		},
 	},
 });
 </script>
