@@ -3,17 +3,17 @@
 	<div class="card">
 		<form @submit.prevent="updateCourseInfo" class="flex">
 			<h3>Course Name</h3>
-			<input />
+			<input type="text" v-model="courseName" placeholder="Course Name" />
 			<h3>Date</h3>
-			<input />
+			<input type="date" v-model="date" />
 			<h3>Game</h3>
-			<input />
+			<input type="text" v-model="game" placeholder="Game" />
 			<h3>Interval</h3>
-			<input />
+			<input type="number" v-model="interval" placeholder="0" />
 			<h3>Start Time</h3>
-			<input />
+			<input type="time" v-model="startTime" placeholder="04:30 PM" />
 			<h3>Restriction Time</h3>
-			<input />
+			<input type="time" v-model="restrictionTime" placeholder="05:00 PM" />
 			<button>Next</button>
 		</form>
 	</div>
