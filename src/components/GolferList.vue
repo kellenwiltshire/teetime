@@ -4,7 +4,7 @@
 		<div class="flex">
 			<!-- This to be replaced with Component -->
 			<div
-				v-for="(golfer, i) in store.listOfGolfers"
+				v-for="(golfer, i) in golfers.listOfGolfers"
 				:key="i"
 				class="card-inner"
 			>
@@ -16,14 +16,21 @@
 </template>
 
 <script lang="ts">
+import { courseStore } from '@/stores/courseStore';
 import { golferStore } from '@/stores/golferStore';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'GolferList',
 	setup() {
-		const store = golferStore();
-		return { store };
+		const golfers = golferStore();
+		const courseInfo = courseStore();
+		return { golfers, courseInfo };
+	},
+	methods: {
+		createSchedule() {
+			const schedule = generateSchedule(this.golfers, this.courseInfo);
+		},
 	},
 });
 </script>
