@@ -1,4 +1,18 @@
-const randomizeGolfers = (golfers) => {
+interface Golfer {
+	name: string;
+	restriction: boolean;
+	carpool: string;
+}
+
+interface Course {
+	name: string;
+	interval: number;
+	date: string;
+	game: string;
+	startTime: string;
+	restrictionTime: string;
+}
+const randomizeGolfers = (golfers: Golfer[]) => {
 	let currentIndex = golfers.length,
 		randomIndex;
 
@@ -18,22 +32,22 @@ const randomizeGolfers = (golfers) => {
 	return golfers;
 };
 
-const addTimeInterval = (currTime, interval) => {
-	let times = [0, 0, 0];
-	let max = times.length;
+const addTimeInterval = (currTime: string, interval: string) => {
+	const times = [0, 0, 0];
+	const max = times.length;
 
-	let a = currTime.split(':');
-	let b = interval.split(':');
+	const a = currTime.split(':');
+	const b = interval.split(':');
 
 	//normalize values
 	for (let i = 0; i < max; i++) {
-		a[i] = isNaN(parseInt(a[i])) ? 0 : parseInt(a[i]);
-		b[i] = isNaN(parseInt(b[i])) ? 0 : parseInt(b[i]);
+		a[i] = isNaN(parseInt(a[i])) ? '0' : parseInt(a[i]).toString();
+		b[i] = isNaN(parseInt(b[i])) ? '0' : parseInt(b[i]).toString();
 	}
 
 	//store values
 	for (let i = 0; i < max; i++) {
-		times[i] = a[i] + b[i];
+		times[i] = parseInt(a[i] + b[i]);
 	}
 
 	let hours = times[0];
@@ -41,13 +55,13 @@ const addTimeInterval = (currTime, interval) => {
 	let seconds = times[2];
 
 	if (seconds >= 60) {
-		let m = (seconds / 60) << 0;
+		const m = (seconds / 60) << 0;
 		minutes += m;
 		seconds -= 60 * m;
 	}
 
 	if (minutes >= 60) {
-		let h = (minutes / 60) << 0;
+		const h = (minutes / 60) << 0;
 		hours += h;
 		minutes -= 60 * h;
 	}
@@ -61,25 +75,26 @@ const addTimeInterval = (currTime, interval) => {
 	);
 };
 
-const testTime = (time) => {
-	let times = [0, 0, 0];
-	let max = times.length;
+const testTime = (time: string) => {
+	const times = [0, 0, 0];
+	const max = times.length;
 
-	let a = time.split(':');
+	const a = time.split(':');
 
 	//normalize values
 	for (let i = 0; i < max; i++) {
-		a[i] = isNaN(parseInt(a[i])) ? 0 : parseInt(a[i]);
+		a[i] = isNaN(parseInt(a[i])) ? '0' : a[i];
 	}
 
 	//store values
 	for (let i = 0; i < max; i++) {
-		times[i] = a[i];
+		times[i] = parseInt(a[i]);
 	}
 
-	let hours = times[0];
-	let minutes = times[1];
+	const hours = times[0];
+	const minutes = times[1];
 
+	//TODO: Update this for Course Restriction Time
 	if (hours >= 16 && minutes >= 30) {
 		return true;
 	} else {
@@ -87,29 +102,16 @@ const testTime = (time) => {
 	}
 };
 
-const filterArray = (arr1, arr2) => {
+const filterArray = (arr1: Golfer[], arr2: Golfer[]) => {
 	const filtered = arr1.filter((el) => {
 		return arr2.indexOf(el) === -1;
 	});
 	return filtered;
 };
 
-interface Golfer {
-	name: string;
-	restriction: boolean;
-	carpool: string;
-}
-
-interface Course {
-	timeslots: number;
-	interval: number;
-	startTime: string;
-	restrictionTime: string;
-}
-
 export default function generateSchedule(golfers: Golfer[], course: Course) {
 	//Deterime Max Golfers
-	const maxGolfers = course.timeslots * 4 || 12 * 4;
+	const maxGolfers = Infinity;
 
 	//Create initial Variables
 	const initialGolfers: Golfer[] = golfers;
@@ -117,11 +119,11 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 	const interval = '00:' + ('0' + course.interval).slice(-2) + ':00';
 
 	//Create the Waiting List and Usuable Golfers Array
-	let waitingList: Golfer[] = [];
+	const waitingList: Golfer[] = [];
 	let usableGolfers: Golfer[] = [];
 
 	//Create Final Array to be filled
-	let finalTeeTimeArray: Group[] = [];
+	const finalTeeTimeArray: Group[] = [];
 
 	//More initial variables to be filled and changed
 	let currTime = initialStartTime;
@@ -144,8 +146,8 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 	}
 
 	//Make a first pass of the golfers to filter out those with a tee time restriction
-	let teeTimeRestrictions: Golfer[] = [];
-	let unrestrictedGolfers: Golfer[] = [];
+	const teeTimeRestrictions: Golfer[] = [];
+	const unrestrictedGolfers: Golfer[] = [];
 	usableGolfers.forEach((golfer: Golfer) => {
 		golfer.restriction
 			? teeTimeRestrictions.push(golfer)

@@ -30,7 +30,10 @@ export default defineComponent({
 	},
 	methods: {
 		createSchedule() {
-			const schedule = generateSchedule(this.golfers, this.courseInfo);
+			const schedule = generateSchedule(
+				this.golfers.listOfGolfers,
+				this.courseInfo.courseInfo,
+			);
 		},
 	},
 });
