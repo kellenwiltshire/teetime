@@ -9,6 +9,9 @@
 		<div v-if="store.isGolferInfo">
 			<GolferList />
 		</div>
+		<div>
+			<TeeTimes />
+		</div>
 	</div>
 </template>
 
@@ -18,6 +21,7 @@ import CourseInformation from '@/components/CourseInformation.vue';
 import GolferForm from '@/components/GolferForm.vue';
 import GolferList from '@/components/GolferList.vue';
 import { checkStore } from '@/stores/checkStore';
+import TeeTimes from '@/components/TeeTimes.vue';
 
 export default defineComponent({
 	name: 'HomeView',
@@ -30,6 +34,7 @@ export default defineComponent({
 		CourseInformation,
 		GolferForm,
 		GolferList,
+		TeeTimes,
 	},
 });
 </script>
