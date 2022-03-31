@@ -10,7 +10,7 @@
 				</div>
 			</div>
 		</div>
-		<button @click="createSchedule">Generate Tee Time Schedule</button>
+		<!-- <button @click="createSchedule">Generate Tee Time Schedule</button> -->
 	</div>
 </template>
 
