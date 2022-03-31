@@ -1,12 +1,13 @@
 <template>
-	<h1>Golfers</h1>
-	<div class="card">
-		<div class="flex">
-			<!-- This to be replaced with Component -->
-			<div v-for="(time, i) in store.schedule" :key="i" class="card-inner">
-				<p>{{ time.teeTime }}</p>
-				<div v-for="(golfer, i) in time.golfers" :key="i" class="card-inner">
+	<h1>Schedule</h1>
+	<div class="card-holder">
+		<!-- This to be replaced with Component -->
+		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
+			<div class="tee-time">{{ time.teeTime }}</div>
+			<div class="tee-names">
+				<div v-for="(golfer, i) in time.golfers" :key="i">
 					<p>{{ golfer.name }}</p>
+					<!-- <p>{{ golfer.carpool }}</p> -->
 				</div>
 			</div>
 		</div>
@@ -36,64 +37,36 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.card {
-	border-radius: 4px;
-	box-shadow: 1px 1px 40px -10px #31505f30, 0px 1px 2px 0px #31505f30;
-	background: white;
-	margin-bottom: 24px;
-}
-
-.card-inner {
-	padding: 10px 22px;
-	border: none;
-	color: white;
-	border-radius: 4px;
-	margin: 8px;
-	font-size: 16px;
-	box-shadow: 1px 1px 15px -2px #212c4430;
-	transition: 0.15s;
-
+.card-holder {
 	display: flex;
+	width: 100%;
 	justify-content: center;
-	align-content: center;
-}
-
-.delete-name {
-	background: transparent;
-	border: 0px;
-	padding: 0px 13px;
-	cursor: pointer;
-	font-size: larger;
-}
-
-.flex {
-	display: flex;
-	align-items: center;
+	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-input {
-	width: 100%;
-	padding: 14px;
-	font-size: 16px;
-	height: 100%;
-	display: block;
+.tee-time-card {
+	display: flex;
+	width: 25%;
+	border: 1px;
+	border-style: solid;
+	border-color: black;
 }
 
-button {
-	background: #4fc08d;
-	padding: 10px 22px;
-	border: none;
-	color: white;
-	border-radius: 4px;
-	margin: 8px;
-	font-size: 16px;
-	cursor: pointer;
-	box-shadow: 1px 1px 15px -2px #212c4430;
-	transition: 0.15s;
+.tee-time {
+	display: flex;
+	flex-shrink: 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	font-size: small;
 }
 
-button:hover {
-	background: #42aa7b;
+.tee-names {
+	display: flex;
+	flex: 1 1 0%;
+	flex-direction: column;
+	justify-content: center;
 }
 </style>
