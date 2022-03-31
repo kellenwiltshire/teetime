@@ -1,13 +1,29 @@
 <template>
 	<h1>Golfer Name</h1>
 	<div class="card">
-		<form @submit.prevent="updateGolfers" class="flex">
-			<h3>Name</h3>
-			<input type="text" name="name" v-model="golferName" required />
-			<h3>Tee Time Restriction?</h3>
-			<input type="checkbox" name="teeTime" v-model="restriction" />
-			<h3>Carpool</h3>
-			<input type="text" name="carpool" v-model="carpool" />
+		<form @submit.prevent="updateGolfers" class="golfer-form">
+			<div class="input-holder">
+				<label for="golferName">Name</label>
+				<div class="input-holder">
+					<input id="golferName" name="golferName" type="text" v-model="golferName" placeholder="John Doe" required />
+				</div>
+			</div>
+
+			<div>
+				<label>Late Tee Time?</label>
+				<label class="switch">
+					<input type="checkbox" v-model="restriction" />
+					<span class="slider round"></span>
+				</label>
+			</div>
+
+			<div>
+				<label for="carpool">Carpool</label>
+				<div class="input-holder">
+					<input id="carpool" name="carpool" type="text" v-model="carpool" placeholder="Tim Doe" />
+				</div>
+				<p class="input-post">Enter Full Names (seperated by commas)</p>
+			</div>
 			<button type="submit">Add</button>
 		</form>
 	</div>
@@ -57,18 +73,106 @@ export default defineComponent({
 	margin-bottom: 24px;
 }
 
-.flex {
+label {
+	display: block;
+}
+
+.input-holder {
+	margin-top: 0.25rem;
+}
+
+.input-post {
+	margin-top: 0.5rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+.input-holder {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.golfer-form {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	padding: 2rem;
 }
 
 input {
-	width: 100%;
-	padding: 14px;
-	font-size: 16px;
-	height: 100%;
 	display: block;
+	border-radius: 0.375rem;
+	width: 100%;
+	border-color: rgb(209 213 219);
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+
+	appearance: none;
+	background-color: #fff;
+	border-width: 1px;
+	padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 30px;
+	height: 17px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+/* The slider */
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: '';
+	height: 13px;
+	width: 13px;
+	left: 2px;
+	bottom: 2px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #4fc08d;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #4fc08d;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(13px);
+	-ms-transform: translateX(13px);
+	transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 17px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
 }
 </style>
