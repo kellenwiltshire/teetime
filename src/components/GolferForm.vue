@@ -117,8 +117,8 @@ input {
 .switch {
 	position: relative;
 	display: inline-block;
-	width: 30px;
-	height: 17px;
+	width: 40px;
+	height: 25px;
 }
 
 /* Hide default HTML checkbox */
@@ -144,8 +144,8 @@ input {
 .slider:before {
 	position: absolute;
 	content: '';
-	height: 13px;
-	width: 13px;
+	height: 21px;
+	width: 21px;
 	left: 2px;
 	bottom: 2px;
 	background-color: white;
@@ -169,7 +169,7 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-	border-radius: 17px;
+	border-radius: 25px;
 }
 
 .slider.round:before {
