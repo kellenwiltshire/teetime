@@ -38,3 +38,10 @@ button {
 button:hover {
 	background: #42aa7b;
 }
+
+.card {
+	border-radius: 4px;
+	box-shadow: 1px 1px 40px -10px #31505f30, 0px 1px 2px 0px #31505f30;
+	background: white;
+	margin-bottom: 24px;
+}
