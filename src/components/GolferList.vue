@@ -5,6 +5,7 @@
 			<!-- This to be replaced with Component -->
 			<div v-for="(golfer, i) in golfers.listOfGolfers" :key="i" class="card-inner">
 				<p>{{ golfer.name }}</p>
+				<dov class="delete-name">&times;</dov>
 			</div>
 		</div>
 		<button @click="createSchedule">Generate Tee Time Schedule</button>
@@ -46,13 +47,32 @@ export default defineComponent({
 }
 
 .card-inner {
-	padding: 16px 24px;
+	padding: 10px 22px;
+	border: none;
+	color: white;
+	border-radius: 4px;
+	margin: 8px;
+	font-size: 16px;
+	box-shadow: 1px 1px 15px -2px #212c4430;
+	transition: 0.15s;
+
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+.delete-name {
+	background: transparent;
+	border: 0px;
+	padding: 0px 13px;
+	cursor: pointer;
+	font-size: larger;
 }
 
 .flex {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 input {
