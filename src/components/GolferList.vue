@@ -1,13 +1,15 @@
 <template>
 	<h1>Golfers</h1>
 	<div class="card">
-		<div class="flex">
+		<ul>
 			<!-- This to be replaced with Component -->
-			<div v-for="(golfer, i) in golfers.listOfGolfers" :key="i" class="card-inner">
-				<p>{{ golfer.name }}</p>
-				<div class="delete-name">&times;</div>
-			</div>
-		</div>
+			<li v-for="(golfer, i) in golfers.listOfGolfers" :key="i">
+				<div class="card-inner">
+					<p>{{ golfer.name }}</p>
+					<div @click="remove(i)" class="delete-name">&times;</div>
+				</div>
+			</li>
+		</ul>
 		<button @click="createSchedule">Generate Tee Time Schedule</button>
 	</div>
 </template>
@@ -36,31 +38,44 @@ export default defineComponent({
 			this.schedStore.updateSchedule(schedule);
 			this.check.setIsSchedGenerated();
 		},
+		remove(i: number) {
+			this.golfers.listOfGolfers.splice(i, 1);
+		},
 	},
 });
 </script>
 
 <style scoped>
+ul {
+	margin-top: 0.75rem;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 1.5rem;
+	list-style: none;
+}
+
+li {
+	display: flex;
+	border-radius: 0.375rem;
+	grid-column: span 1 / span 1;
+	border-style: solid;
+	border-width: 1px;
+	border-color: gray;
+	padding: 0.25rem;
+}
+.card-inner {
+	display: flex;
+	flex: 1 1 0%;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: 0.375rem;
+}
 .card {
 	border-radius: 4px;
 	box-shadow: 1px 1px 40px -10px #31505f30, 0px 1px 2px 0px #31505f30;
 	background: white;
 	margin-bottom: 24px;
-}
-
-.card-inner {
-	padding: 10px 22px;
-	border: none;
-	color: white;
-	border-radius: 4px;
-	margin: 8px;
-	font-size: 16px;
-	box-shadow: 1px 1px 15px -2px #212c4430;
-	transition: 0.15s;
-
-	display: flex;
-	justify-content: center;
-	align-content: center;
+	padding: 1rem;
 }
 
 .delete-name {
@@ -69,36 +84,5 @@ export default defineComponent({
 	padding: 0px 13px;
 	cursor: pointer;
 	font-size: larger;
-}
-
-.flex {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
-input {
-	width: 100%;
-	padding: 14px;
-	font-size: 16px;
-	height: 100%;
-	display: block;
-}
-
-button {
-	background: #4fc08d;
-	padding: 10px 22px;
-	border: none;
-	color: white;
-	border-radius: 4px;
-	margin: 8px;
-	font-size: 16px;
-	cursor: pointer;
-	box-shadow: 1px 1px 15px -2px #212c4430;
-	transition: 0.15s;
-}
-
-button:hover {
-	background: #42aa7b;
 }
 </style>
