@@ -18,6 +18,7 @@ import { golferStore } from '@/stores/golferStore';
 import { scheduleStore } from '@/stores/scheduleStore';
 import { defineComponent } from 'vue';
 import generateSchedule from '@/utils/schedule';
+import { checkStore } from '@/stores/checkStore';
 
 export default defineComponent({
 	name: 'GolferList',
@@ -25,14 +26,15 @@ export default defineComponent({
 		const golfers = golferStore();
 		const courseInfo = courseStore();
 		const schedStore = scheduleStore();
-		console.log(golfers.listOfGolfers);
+		const check = checkStore();
 
-		return { golfers, courseInfo, schedStore };
+		return { golfers, courseInfo, schedStore, check };
 	},
 	methods: {
 		createSchedule() {
 			const schedule = generateSchedule(this.golfers.listOfGolfers, this.courseInfo.courseInfo);
 			this.schedStore.updateSchedule(schedule);
+			this.check.setIsSchedGenerated();
 		},
 	},
 });

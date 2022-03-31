@@ -3,13 +3,13 @@
 		<div v-if="!store.isCourseInfo">
 			<CourseInformation />
 		</div>
-		<div v-if="store.isGolferInfo">
+		<div v-if="store.isGolferInfo && !store.isSchedGenerated">
 			<GolferForm />
 		</div>
-		<div v-if="store.isGolferInfo">
+		<div v-if="store.isGolferInfo && !store.isSchedGenerated">
 			<GolferList />
 		</div>
-		<div>
+		<div v-if="store.isSchedGenerated">
 			<TeeTimes />
 		</div>
 	</div>

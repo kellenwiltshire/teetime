@@ -1,5 +1,9 @@
 <template>
 	<h1>Schedule</h1>
+	<h2>
+		{{ courseInfo.courseInfo.name }} - {{ courseInfo.courseInfo.date }} - {{ courseInfo.courseInfo.startTime }} -
+		{{ courseInfo.courseInfo.game }}
+	</h2>
 	<div class="card-holder">
 		<!-- This to be replaced with Component -->
 		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
@@ -19,13 +23,15 @@
 import { defineComponent } from 'vue';
 import generateSchedule from '@/utils/schedule';
 import { scheduleStore } from '@/stores/scheduleStore';
+import { courseStore } from '@/stores/courseStore';
 
 export default defineComponent({
 	name: 'TeeTimes',
 	setup() {
 		const store = scheduleStore();
+		const courseInfo = courseStore();
 
-		return { store };
+		return { store, courseInfo };
 	},
 	// methods: {
 	// 	createSchedule() {
