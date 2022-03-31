@@ -44,7 +44,7 @@ const addTimeInterval = (currTime: string, interval: string) => {
 
 	//store values
 	for (let i = 0; i < max; i++) {
-		times[i] = parseInt(a[i] + b[i]);
+		times[i] = parseInt(a[i]) + parseInt(b[i]);
 	}
 
 	let hours = times[0];
@@ -100,7 +100,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 	//Create initial Variables
 	const initialGolfers: Golfer[] = golfers;
 	const initialStartTime = course.startTime;
-	const interval = '00:' + ('0' + course.interval).slice(-2) + ':00';
+	const interval = '00:' + ('0' + course.interval).slice(-2);
 
 	//Create the Waiting List and Usuable Golfers Array
 	const waitingList: Golfer[] = [];
