@@ -5,7 +5,7 @@
 			<!-- This to be replaced with Component -->
 			<div v-for="(golfer, i) in golfers.listOfGolfers" :key="i" class="card-inner">
 				<p>{{ golfer.name }}</p>
-				<dov class="delete-name">&times;</dov>
+				<div class="delete-name">&times;</div>
 			</div>
 		</div>
 		<button @click="createSchedule">Generate Tee Time Schedule</button>
