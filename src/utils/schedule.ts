@@ -59,27 +59,33 @@ const addTimeInterval = (currTime: string, interval: string) => {
 	return ('0' + hours).slice(-2) + ':' + ('0' + minutes).slice(-2);
 };
 
-const testTime = (time: string) => {
+const testTime = (time: string, laterTeeTime: string) => {
 	const times = [0, 0, 0];
+	const laterTime = [0, 0, 0];
 	const max = times.length;
 
 	const a = time.split(':');
+	const b = laterTeeTime.split(':');
 
 	//normalize values
 	for (let i = 0; i < max; i++) {
 		a[i] = isNaN(parseInt(a[i])) ? '0' : a[i];
+		b[i] = isNaN(parseInt(b[i])) ? '0' : b[i];
 	}
 
 	//store values
 	for (let i = 0; i < max; i++) {
 		times[i] = parseInt(a[i]);
+		laterTime[i] = parseInt(b[i]);
 	}
 
 	const hours = times[0];
 	const minutes = times[1];
 
-	//TODO: Update this for Course Restriction Time
-	if (hours >= 16 && minutes >= 30) {
+	const laterHour = laterTime[0];
+	const laterMinute = laterTime[1];
+
+	if (hours >= laterHour && minutes >= laterMinute) {
 		return true;
 	} else {
 		return false;
@@ -100,6 +106,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 	//Create initial Variables
 	const initialGolfers: Golfer[] = golfers;
 	const initialStartTime = course.startTime;
+	const laterTeeTime = course.restrictionTime;
 	const interval = '00:' + ('0' + course.interval).slice(-2);
 
 	//Create the Waiting List and Usuable Golfers Array
@@ -147,7 +154,7 @@ export default function generateSchedule(golfers: Golfer[], course: Course) {
 			} else if (groupNum === 3) {
 				newGolferArray.push(golfer);
 				currTime = addTimeInterval(currTime, interval);
-				const timeTest = testTime(currTime);
+				const timeTest = testTime(currTime, laterTeeTime);
 				if (timeTest) {
 					timeTestPassed = true;
 					//Once it is passed the time restriction of 4:30 combine the rest of the unrestricted golfers and restricted golfers, then randomize. Then add this one the end of the already scheduled golfers
