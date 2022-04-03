@@ -5,9 +5,11 @@
 		{{ courseInfo.courseInfo.startTime }} -
 		{{ courseInfo.courseInfo.game || 'Game' }}
 	</h2>
-	<button @click="createSchedule">Generate Tee Time Schedule</button>
-	<button>Print</button>
-	<button @click="startOver">Start Over</button>
+	<div class="button-holder">
+		<button>Print</button>
+		<button @click="createSchedule">Regenerate Tee Time Schedule</button>
+		<button @click="startOver">Start Over</button>
+	</div>
 	<div class="card-holder">
 		<!-- This to be replaced with Component -->
 		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
@@ -56,6 +58,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.button-holder {
+	display: flex;
+	justify-content: space-between;
+}
 .card-holder {
 	display: flex;
 	width: 100%;
