@@ -1,9 +1,13 @@
 <template>
 	<h1>Schedule</h1>
 	<h2>
-		{{ courseInfo.courseInfo.name }} - {{ courseInfo.courseInfo.date }} - {{ courseInfo.courseInfo.startTime }} -
-		{{ courseInfo.courseInfo.game }}
+		{{ courseInfo.courseInfo.name || 'Course' }} - {{ courseInfo.courseInfo.date || 'Date' }} -
+		{{ courseInfo.courseInfo.startTime }} -
+		{{ courseInfo.courseInfo.game || 'Game' }}
 	</h2>
+	<button @click="createSchedule">Generate Tee Time Schedule</button>
+	<button>Print</button>
+	<button @click="startOver">Start Over</button>
 	<div class="card-holder">
 		<!-- This to be replaced with Component -->
 		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
@@ -15,7 +19,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- <button @click="createSchedule">Generate Tee Time Schedule</button> -->
 	</div>
 </template>
 
@@ -24,21 +27,31 @@ import { defineComponent } from 'vue';
 import generateSchedule from '@/utils/schedule';
 import { scheduleStore } from '@/stores/scheduleStore';
 import { courseStore } from '@/stores/courseStore';
+import { golferStore } from '@/stores/golferStore';
+import { checkStore } from '@/stores/checkStore';
 
 export default defineComponent({
 	name: 'TeeTimes',
 	setup() {
 		const store = scheduleStore();
 		const courseInfo = courseStore();
+		const golfers = golferStore();
+		const check = checkStore();
 
-		return { store, courseInfo };
+		return { store, courseInfo, golfers, check };
 	},
-	// methods: {
-	// 	createSchedule() {
-	// 		const schedule = generateSchedule(this.golfers.listOfGolfers, this.courseInfo.courseInfo);
-	// 		this.schedStore.updateSchedule(schedule);
-	// 	},
-	// },
+	methods: {
+		createSchedule() {
+			const schedule = generateSchedule(this.golfers.listOfGolfers, this.courseInfo.courseInfo);
+			this.store.updateSchedule(schedule);
+		},
+		startOver() {
+			this.store.$reset();
+			this.courseInfo.$reset();
+			this.golfers.$reset();
+			this.check.$reset();
+		},
+	},
 });
 </script>
 
