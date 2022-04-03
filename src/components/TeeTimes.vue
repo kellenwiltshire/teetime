@@ -6,7 +6,7 @@
 		{{ courseInfo.courseInfo.game || 'Game' }}
 	</h2>
 	<div class="button-holder">
-		<button>Print</button>
+		<button @click="printSchedule">Print</button>
 		<button @click="createSchedule">Regenerate Tee Time Schedule</button>
 		<button @click="startOver">Start Over</button>
 	</div>
@@ -53,11 +53,22 @@ export default defineComponent({
 			this.golfers.$reset();
 			this.check.$reset();
 		},
+		printSchedule() {
+			console.log('Print');
+		},
 	},
 });
 </script>
 
 <style scoped>
+@media print {
+	* {
+		display: none;
+	}
+	.card-holder {
+		display: block;
+	}
+}
 .button-holder {
 	display: flex;
 	justify-content: space-between;
