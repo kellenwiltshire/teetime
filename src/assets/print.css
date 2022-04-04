@@ -1,0 +1,32 @@
+.card-holder {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.tee-time-card {
+	display: flex;
+	width: 25%;
+	border: 1px;
+	border-style: solid;
+	border-color: black;
+}
+
+.tee-time {
+	display: flex;
+	flex-shrink: 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 4rem;
+	font-size: small;
+}
+
+.tee-names {
+	display: flex;
+	flex: 1 1 0%;
+	flex-direction: column;
+	justify-content: center;
+}

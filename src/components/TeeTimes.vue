@@ -12,7 +12,6 @@
 		<button @click="startOver">Start Over</button>
 	</div>
 	<div id="elementToPrint" class="card-holder">
-		<!-- This to be replaced with Component -->
 		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
 			<div class="tee-time">{{ time.teeTime }}</div>
 			<div class="tee-names">
@@ -63,6 +62,7 @@ export default defineComponent({
 			this.$htmlToPaper('elementToPrint', {
 				name: '_blank',
 				specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
+				styles: ['../assets/print.css'],
 			});
 		},
 	},
@@ -70,14 +70,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@media print {
-	* {
-		display: none;
-	}
-	.card-holder {
-		display: block;
-	}
-}
 .button-holder {
 	display: flex;
 	justify-content: space-between;
