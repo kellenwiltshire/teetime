@@ -1,7 +1,8 @@
 <template>
 	<h1>Schedule</h1>
 	<h2>
-		{{ courseInfo.courseInfo.name || 'Course' }} - {{ courseInfo.courseInfo.date || 'Date' }} -
+		{{ courseInfo.courseInfo.name || 'Course' }} -
+		{{ courseInfo.courseInfo.date || 'Date' }} -
 		{{ courseInfo.courseInfo.startTime }} -
 		{{ courseInfo.courseInfo.game || 'Game' }}
 	</h2>
@@ -10,7 +11,7 @@
 		<button @click="createSchedule">Regenerate Tee Time Schedule</button>
 		<button @click="startOver">Start Over</button>
 	</div>
-	<div class="card-holder">
+	<div id="elementToPrint" class="card-holder">
 		<!-- This to be replaced with Component -->
 		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
 			<div class="tee-time">{{ time.teeTime }}</div>
@@ -44,7 +45,10 @@ export default defineComponent({
 	},
 	methods: {
 		createSchedule() {
-			const schedule = generateSchedule(this.golfers.listOfGolfers, this.courseInfo.courseInfo);
+			const schedule = generateSchedule(
+				this.golfers.listOfGolfers,
+				this.courseInfo.courseInfo,
+			);
 			this.store.updateSchedule(schedule);
 		},
 		startOver() {
@@ -54,7 +58,12 @@ export default defineComponent({
 			this.check.$reset();
 		},
 		printSchedule() {
-			console.log('Print');
+			console.log('Printing');
+			// @ts-expect-error-print
+			this.$htmlToPaper('elementToPrint', {
+				name: '_blank',
+				specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
+			});
 		},
 	},
 });
