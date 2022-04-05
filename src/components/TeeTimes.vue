@@ -84,10 +84,12 @@ export default defineComponent({
 
 .tee-time-card {
 	display: flex;
-	width: 25%;
+	width: 23%;
 	border: 1px;
 	border-style: solid;
 	border-color: black;
+	border-radius: 10px;
+	margin: 0.15rem;
 }
 
 .tee-time {
