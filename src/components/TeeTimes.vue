@@ -1,23 +1,25 @@
 <template>
-	<h1>Schedule</h1>
-	<h2>
-		{{ courseInfo.courseInfo.name || 'Course' }} -
-		{{ courseInfo.courseInfo.date || 'Date' }} -
-		{{ courseInfo.courseInfo.startTime }} -
-		{{ courseInfo.courseInfo.game || 'Game' }}
-	</h2>
 	<div class="button-holder">
 		<button @click="printSchedule">Print</button>
 		<button @click="createSchedule">Regenerate Tee Time Schedule</button>
 		<button @click="startOver">Start Over</button>
 	</div>
-	<div id="elementToPrint" class="card-holder">
-		<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
-			<div class="tee-time">{{ time.teeTime }}</div>
-			<div class="tee-names">
-				<div v-for="(golfer, i) in time.golfers" :key="i">
-					<p>{{ golfer.name }}</p>
-					<!-- <p>{{ golfer.carpool }}</p> -->
+	<div id="elementToPrint">
+		<h1>Schedule</h1>
+		<h2>
+			{{ courseInfo.courseInfo.name || 'Course' }} -
+			{{ courseInfo.courseInfo.date || 'Date' }} -
+			{{ courseInfo.courseInfo.startTime }} -
+			{{ courseInfo.courseInfo.game || 'Game' }}
+		</h2>
+		<div class="card-holder">
+			<div v-for="(time, i) in store.schedule" :key="i" class="tee-time-card">
+				<div class="tee-time">{{ time.teeTime }}</div>
+				<div class="tee-names">
+					<div v-for="(golfer, i) in time.golfers" :key="i">
+						<p>{{ golfer.name }}</p>
+						<!-- <p>{{ golfer.carpool }}</p> -->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -60,7 +62,6 @@ export default defineComponent({
 			console.log('Printing');
 			// @ts-expect-error-print
 			this.$htmlToPaper('elementToPrint', {
-				name: '_blank',
 				specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
 				styles: ['../assets/print.css'],
 			});
