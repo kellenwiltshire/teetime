@@ -63,7 +63,7 @@ export default defineComponent({
 			// @ts-expect-error-print
 			this.$htmlToPaper('elementToPrint', {
 				specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
-				styles: ['../assets/print.css'],
+				styles: ['/print.css'],
 			});
 		},
 	},
