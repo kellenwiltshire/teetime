@@ -1,17 +1,20 @@
 <template>
 	<div class="expand container">
 		<AboutVue />
+		<AboutCreator />
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AboutVue from '@/components/About/About.vue';
+import AboutCreator from '@/components/About/AboutCreator.vue';
 
 export default defineComponent({
 	name: 'AboutView',
 	components: {
 		AboutVue,
+		AboutCreator,
 	},
 });
 </script>
@@ -24,6 +27,6 @@ export default defineComponent({
 	margin: 0 auto;
 }
 .expand {
-	height: 100vh;
+	min-height: 100vh;
 }
 </style>
