@@ -12,6 +12,15 @@
 				<li><router-link to="/">Home</router-link></li>
 				<li><router-link to="/how-to">How To Use</router-link></li>
 				<li><router-link to="/about">About</router-link></li>
+				<li>
+					<a
+						href="https://www.paypal.com/donate?business=Z2PC95TA9JLVL&item_name=Web+Services&currency_code=CAD"
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						Donate
+					</a>
+				</li>
 			</div>
 		</ul>
 	</nav>
