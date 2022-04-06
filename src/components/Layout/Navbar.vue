@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar">
 		<!-- LOGO -->
-		<div class="logo">Tee Time Generator</div>
+		<div class="logo">Tee Time Generator<span class="small">(beta)</span></div>
 		<!-- NAVIGATION MENU -->
 		<ul class="nav-links">
 			<!-- USING CHECKBOX HACK -->
@@ -35,6 +35,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.small {
+	font-size: x-small;
+	color: white;
+}
 a {
 	text-decoration: none;
 }
