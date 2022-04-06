@@ -1,7 +1,6 @@
 <template>
 	<nav class="footer">
 		<div class="logo">Tee Time Generator</div>
-
 		<ul class="nav-links">
 			<div class="menu">
 				<li><router-link to="/">Home</router-link></li>
