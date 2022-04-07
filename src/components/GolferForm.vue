@@ -5,7 +5,14 @@
 			<div class="input-holder">
 				<label for="golferName">Name</label>
 				<div class="input-holder">
-					<input id="golferName" name="golferName" type="text" v-model="golferName" placeholder="John Doe" required />
+					<input
+						id="golferName"
+						name="golferName"
+						type="text"
+						v-model="golferName"
+						placeholder="John Doe"
+						required
+					/>
 				</div>
 			</div>
 
@@ -20,25 +27,38 @@
 			<div>
 				<label for="carpool">Carpool</label>
 				<div class="input-holder">
-					<input id="carpool" name="carpool" type="text" v-model="carpool" placeholder="Tim Doe" />
+					<input
+						id="carpool"
+						name="carpool"
+						type="text"
+						v-model="carpool"
+						placeholder="Tim Doe"
+					/>
 				</div>
 				<p class="input-post">Enter Full Names (seperated by commas)</p>
 			</div>
 			<button type="submit">Add</button>
+			<button @click="startOver">Start Over</button>
 		</form>
 	</div>
 </template>
 
 <script lang="ts">
+import { checkStore } from '@/stores/checkStore';
+import { courseStore } from '@/stores/courseStore';
 import { golferStore } from '@/stores/golferStore';
+import { scheduleStore } from '@/stores/scheduleStore';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
 	name: 'GolferForm',
 	setup() {
 		const store = golferStore();
+		const courseInfo = courseStore();
+		const check = checkStore();
+		const schedule = scheduleStore();
 
-		return { store };
+		return { store, courseInfo, check, schedule };
 	},
 	data() {
 		return {
@@ -60,6 +80,12 @@ export default defineComponent({
 			this.golferName = '';
 			this.carpool = '';
 			this.restriction = false;
+		},
+		startOver() {
+			this.store.$reset();
+			this.courseInfo.$reset();
+			this.schedule.$reset();
+			this.check.$reset();
 		},
 	},
 });
