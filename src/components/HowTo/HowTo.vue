@@ -2,14 +2,14 @@
 	<h2>How To Use</h2>
 	<div class="card buffer">
 		<div>
-			<h4>Step 1: Course Infomation</h4>
+			<h4>Step 1: Course Information</h4>
 			<p>
 				On this screen you can enter all the information that your Golfers will
-				need to know about thier upcoming roung. All this information is option
-				though, however for the scheduler to work you will need to enter a Start
-				Time and Interval so that the Tee Times can be properly generated. A 2nd
-				Start time is also available if you have some Goflers who require a
-				later Tee Time due to other engagements such as Work.
+				need to know about their upcoming round. All this information is
+				optional though, however for the scheduler to work you will need to
+				enter a Start Time and Interval so that the Tee Times can be properly
+				generated. A 2nd Start time is also available if you have some Golfers
+				who require a later Tee Time due to other engagements such as Work.
 			</p>
 		</div>
 		<div>
@@ -20,7 +20,7 @@
 				available) and if they car pool with anything. The Car Pool names will
 				need to match the names of the other Golfer exactly and must be entered
 				for all parties (ie if Tim Doe and John Doe car pool, then they will
-				both need to list the other at this screen). Seperate multiple car pool
+				both need to list the other at this screen). Separate multiple car pool
 				names by a comma. Once the information is complete, click "Add" and see
 				their name populate to the list below. If there is a mistake, just click
 				the "x" to remove them from the list.
