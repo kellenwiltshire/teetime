@@ -17,7 +17,7 @@
 			<p>
 				Next, you will need to enter all the names of the Golfers that will be
 				playing. Enter in their name, whether they need a later Tee Time (if
-				available) and if they car pool with anything. The Car Pool names will
+				available) and if they car pool with anyone. The Car Pool names will
 				need to match the names of the other Golfer exactly and must be entered
 				for all parties (ie if Tim Doe and John Doe car pool, then they will
 				both need to list the other at this screen). Separate multiple car pool
