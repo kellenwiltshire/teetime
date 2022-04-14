@@ -1,6 +1,5 @@
 <template>
 	<nav class="footer">
-		<div class="logo">Tee Time Generator</div>
 		<ul class="nav-links">
 			<div class="menu">
 				<li><router-link to="/">Home</router-link></li>
@@ -29,7 +28,7 @@ li {
 .footer {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: end;
 	padding: 10px;
 	background-color: #4fc08d;
 	color: #fff;
