@@ -59,6 +59,7 @@ export default defineComponent({
 	setup() {
 		const store = courseStore();
 		const check = checkStore();
+
 		return { store, check };
 	},
 	data() {

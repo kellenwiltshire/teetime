@@ -19,5 +19,8 @@ export const golferStore = defineStore('golfers', {
 		addGolfer(newGolfer: Golfer) {
 			this.listOfGolfers.push(newGolfer);
 		},
+		addPrevGolfers(previousGolfers: string) {
+			this.listOfGolfers = JSON.parse(previousGolfers);
+		},
 	},
 });

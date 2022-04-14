@@ -10,7 +10,10 @@
 				</div>
 			</li>
 		</ul>
-		<button @click="createSchedule">Generate Tee Time Schedule</button>
+		<div class="flex">
+			<button @click="createSchedule">Generate Tee Time Schedule</button>
+			<button @click="resetGolfers" class="red">Remove All Golfers</button>
+		</div>
 	</div>
 </template>
 
@@ -38,8 +41,14 @@ export default defineComponent({
 			this.schedStore.updateSchedule(schedule);
 			this.check.setIsSchedGenerated();
 		},
+		resetGolfers() {
+			this.golfers.$reset();
+			localStorage.removeItem('golfers');
+		},
 		remove(i: number) {
 			this.golfers.listOfGolfers.splice(i, 1);
+
+			localStorage.setItem('golfers', JSON.stringify(this.golfers.getGolfers));
 		},
 	},
 });
@@ -84,5 +93,14 @@ li {
 	padding: 0px 13px;
 	cursor: pointer;
 	font-size: larger;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.red {
+	background-color: red;
 }
 </style>

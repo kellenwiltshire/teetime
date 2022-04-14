@@ -5,14 +5,7 @@
 			<div class="input-holder">
 				<label for="golferName">Name</label>
 				<div class="input-holder">
-					<input
-						id="golferName"
-						name="golferName"
-						type="text"
-						v-model="golferName"
-						placeholder="John Doe"
-						required
-					/>
+					<input id="golferName" name="golferName" type="text" v-model="golferName" placeholder="John Doe" required />
 				</div>
 			</div>
 
@@ -27,13 +20,7 @@
 			<div>
 				<label for="carpool">Carpool</label>
 				<div class="input-holder">
-					<input
-						id="carpool"
-						name="carpool"
-						type="text"
-						v-model="carpool"
-						placeholder="Tim Doe"
-					/>
+					<input id="carpool" name="carpool" type="text" v-model="carpool" placeholder="Tim Doe" />
 				</div>
 				<p class="input-post">Enter Full Names (seperated by commas)</p>
 			</div>
@@ -58,6 +45,12 @@ export default defineComponent({
 		const check = checkStore();
 		const schedule = scheduleStore();
 
+		const previousGolfers = localStorage.getItem('golfers');
+
+		if (previousGolfers) {
+			store.addPrevGolfers(previousGolfers);
+		}
+
 		return { store, courseInfo, check, schedule };
 	},
 	data() {
@@ -75,11 +68,12 @@ export default defineComponent({
 				restriction: this.restriction,
 				carpool: this.carpool,
 			};
-			console.log(golfer);
 			this.store.addGolfer(golfer);
 			this.golferName = '';
 			this.carpool = '';
 			this.restriction = false;
+
+			localStorage.setItem('golfers', JSON.stringify(this.store.getGolfers));
 		},
 		startOver() {
 			this.store.$reset();
